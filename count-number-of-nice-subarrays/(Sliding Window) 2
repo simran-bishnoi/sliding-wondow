@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    public static void niceSubArr(int arr[],int k){
+        int i=0,a=0,b=0,ans=0;
+        int m=k-1;
+        //find number of subarrays containg atmost k odd numbers
+        for(int j=0; j<arr.length; j++){
+            k-=arr[j]%2;
+            if(k<0){
+                while(k<0){
+                    k+=arr[i]%2;
+                    i++;
+                  //  a+=(j-i+1);
+                }
+            }
+            a+=(j-i+1);
+        }
+        //find number of subarrays containing atmost k-1 odd numbers;
+        i=0;
+       
+        
+          for(int j=0; j<arr.length; j++){
+            m-=arr[j]%2;
+            if(m<0){
+                while(m<0){
+                    m+=arr[i]%2;
+                    i++;
+                  //  a+=(j-i+1);
+                }
+            }
+            b+=(j-i+1);
+        }
+        System.out.println(a-b);
+    }
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+         Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0; i<n; i++){
+            arr[i]=sc.nextInt();
+        }
+        int k=sc.nextInt();
+        niceSubArr(arr,k);
+    }
+}
